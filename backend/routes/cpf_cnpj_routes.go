@@ -6,9 +6,9 @@ import (
 )
 
 func RegisterCPFCNPJRoutes(r *mux.Router) {
-	r.HandleFunc("/api/cpfs", handlers.GetAllRecords).Methods("GET")
-	r.HandleFunc("/api/cpfs", handlers.CreateRecord).Methods("POST")
-	r.HandleFunc("/api/cpfs/{id}", handlers.UpdateRecord).Methods("PUT")
-	r.HandleFunc("/api/cpfs/{id}", handlers.DeleteRecord).Methods("DELETE")
+	r.HandleFunc("/cpf-cnpj", handlers.GetAllRecords).Methods("GET")
+	r.HandleFunc("/cpf-cnpj", handlers.CreateRecord).Methods("POST")
+	r.HandleFunc("/cpf-cnpj/{id}", handlers.UpdateRecord).Methods("PUT")
+	r.HandleFunc("/cpf-cnpj/{id}", handlers.DeleteRecord).Methods("DELETE")
 	r.HandleFunc("/status", handlers.StatusHandler).Methods("GET")
 }

@@ -7,13 +7,15 @@ import (
 	"gorm.io/gorm"
 )
 
-var db *gorm.DB
+var DB *gorm.DB
 
 func InitDatabase() {
-	dsn := "host=localhost user=postgres password=dinossauro dbname=cpf_cnpj port=5432 sslmode=disable"
+	dsn := "host=localhost user=postgres password=dinossauro dbname=postgres port=5433 sslmode=disable"
 	var err error
-	db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("Falha ao conectar ao banco de dados: %v", err)
+	} else {
+		log.Print("Conectado ao banco de dados!")
 	}
 }
