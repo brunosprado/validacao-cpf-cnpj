@@ -8,6 +8,7 @@ import (
 	"github.com/brunosprado/validacao-cpf-cnpj.git/backend/models"
 	"github.com/brunosprado/validacao-cpf-cnpj.git/backend/routes"
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 )
 
 func main() {
@@ -21,9 +22,12 @@ func main() {
 	// Cria o roteador
 	r := mux.NewRouter()
 	routes.RegisterCPFCNPJRoutes(r, db)
-	r.Use(routes.CorsMiddleware)
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{"*"},
+		AllowCredentials: true,
+	})
 
 	// Inicia o servidor
 	log.Println("Servidor iniciado!")
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(":8080", c.Handler(r)))
 }
