@@ -21,6 +21,7 @@ func main() {
 	// Cria o roteador
 	r := mux.NewRouter()
 	routes.RegisterCPFCNPJRoutes(r, db)
+	r.Use(routes.CorsMiddleware)
 
 	// Inicia o servidor
 	log.Println("Servidor iniciado!")
