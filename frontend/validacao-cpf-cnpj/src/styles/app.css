@@ -1,0 +1,141 @@
+body, html, #root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container-geral {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 7rem 10rem;
+}
+
+.titulo-geral{
+    font-size: 2rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 4rem;
+}
+
+.container-form{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    border: 1px solid #f2f3f4;
+    border-radius: 8px;
+    background: #f2f3f4;
+    width: 20rem;
+    height: 20rem;
+}
+
+.titulo-form{
+    font-size: 1.3rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.inpt-form {
+    padding: .7rem;
+    border: 1px solid #000;
+    border-radius: 12px;
+}
+
+.success {
+    font-size: .7rem;
+    text-align: center;
+    color: green;
+}
+
+.error{
+    font-size: .7rem;
+    text-align: center;
+    color: red;
+}
+
+.btn-form{
+    width: 7rem;
+    padding: .7rem;
+    color: #000;
+    background-color: lightgrey;
+    border: 1px solid lightgrey;
+    cursor: pointer;
+    border-radius: 8px;
+    text-transform: uppercase;
+    transition: .3s;
+}
+
+.container-check{
+    display: flex;
+    flex-direction: row;
+    gap: .1rem;
+    align-items: flex-end;
+}
+
+.label-check{
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container-lista {
+    display: flex;
+    width: 50%;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background-color: #FFFFFF;
+        color: #f2f3f4;
+        margin: 4rem 0;
+    }
+
+    thead {
+        background: #f2f3f4;
+        color: #000;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+
+    th,
+    td {
+        padding: 12px 15px;
+        border: 1px solid #f2f3f4;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    th {
+        text-transform: uppercase;
+    }
+
+    td {
+        color: #000000;
+    }
+}
+
+.lista{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    background: #f2f3f4;
+    list-style: none;
+    padding: 1.3rem;
+    align-items: center;
+}
+.lista-item{
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.btn-form:hover{
+    background-color: #fff;
+}

@@ -24,6 +24,7 @@ func main() {
 	routes.RegisterCPFCNPJRoutes(r, db)
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"*"},
+		AllowedMethods:   []string{http.MethodGet, http.MethodPost, http.MethodDelete, http.MethodPut},
 		AllowCredentials: true,
 	})
 
