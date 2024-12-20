@@ -1,0 +1,131 @@
+openapi: 3.0.0
+info:
+  title: API de Validação de CPF/CNPJ
+  description: API para manipulação e validação de registros de CPF e CNPJ.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Servidor local
+
+paths:
+  /cpf-cnpj:
+    get:
+      summary: Listar todos os registros
+      description: Retorna todos os registros de CPF/CNPJ no banco de dados.
+      responses:
+        '200':
+          description: Lista de registros.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CPF_CNPJ'
+        '500':
+          description: Erro ao buscar registros.
+    post:
+      summary: Criar um novo registro
+      description: Adiciona um novo registro de CPF/CNPJ ao banco de dados.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CPF_CNPJ'
+      responses:
+        '201':
+          description: Registro criado com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CPF_CNPJ'
+        '400':
+          description: Payload inválido ou CPF/CNPJ inválido.
+        '500':
+          description: Erro ao criar registro.
+
+  /cpf-cnpj/{id}:
+    put:
+      summary: Atualizar um registro
+      description: Atualiza um registro existente de CPF/CNPJ.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do registro a ser atualizado.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CPF_CNPJ'
+      responses:
+        '200':
+          description: Registro atualizado com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CPF_CNPJ'
+        '400':
+          description: Payload inválido ou CPF/CNPJ inválido.
+        '404':
+          description: Registro não encontrado.
+        '500':
+          description: Erro ao atualizar registro.
+
+    delete:
+      summary: Deletar um registro
+      description: Remove um registro de CPF/CNPJ do banco de dados.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do registro a ser deletado.
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Registro deletado com sucesso.
+        '500':
+          description: Erro ao deletar registro.
+
+  /status:
+    get:
+      summary: Verificar o status do serviço
+      description: Retorna informações sobre o status do serviço, como o número de consultas realizadas.
+      responses:
+        '200':
+          description: Status do serviço.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uptime:
+                    type: string
+                    description: Status atual do serviço.
+                  queriesCount:
+                    type: integer
+                    description: Número de consultas realizadas.
+
+components:
+  schemas:
+    CPF_CNPJ:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID único do registro.
+        number:
+          type: string
+          description: Número de CPF ou CNPJ.
+        createdAt:
+          type: string
+          format: date-time
+          description: Data de criação do registro.
+        updatedAt:
+          type: string
+          format: date-time
+          description: Data de atualização do registro.

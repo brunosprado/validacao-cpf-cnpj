@@ -1,0 +1,35 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    command: go run ./main.go
+    depends_on:
+      db: 
+        condition: service_healthy
+    ports:
+      - 8080:8080
+  db:
+    image: postgres:17
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=dinossauro
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+        - ./pgsync/pg:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    command: npm run dev
+    depends_on:
+      - backend
+    ports:
+      - 5173:5173

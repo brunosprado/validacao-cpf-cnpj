@@ -8,6 +8,6 @@ import (
 var DB *gorm.DB
 
 func InitDatabase() (*gorm.DB, error) {
-	dsn := "host=localhost user=postgres password=dinossauro dbname=postgres port=5433 sslmode=disable"
+	dsn := "host=db user=postgres password=dinossauro dbname=postgres port=5432 sslmode=disable"
 	return gorm.Open(postgres.Open(dsn), &gorm.Config{})
 }
